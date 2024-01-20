@@ -1,6 +1,6 @@
+import hypothesis.provisional
 import pytest
-import hypothesis
+from hypothesis import given
+from hypothesis.strategies import text
+from src import rcvs_web_scraper
 
-
-def test_get_url():
-    pass
