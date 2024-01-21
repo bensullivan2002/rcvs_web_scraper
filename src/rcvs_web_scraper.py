@@ -17,39 +17,61 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 3)
+these_pages = range(1, 2)
 
 for this_page in these_pages:
     html_data = get_url(base_url, this_page)
     soup = make_soup(html_data)
 
-    all_practice_names = soup.select("div.practice h2.item-title")
+    practices = soup.select("div.practice")
+
     practice_names = []
-    for practice in all_practice_names:
-        practice_names.append((practice.get_text(strip=True)))
-    print(practice_names)
-
-    all_practice_addresses = soup.select("div.practice div.item-address")
     practice_addresses = []
-    for practice in all_practice_addresses:
-        practice_addresses.append((practice.get_text(strip=True)))
-
-    all_practice_tels = soup.select("div.practice div.item-contact span.item-contact-tel")
-    temp_practice_tels = []
-    for practice in all_practice_tels:
-        temp_practice_tels.append((practice.get_text(strip=True)))
     practice_tels = []
-    for temp_practice_tel in temp_practice_tels:
-        practice_tels.append(re.sub(r"phone2", "", temp_practice_tel))
-
-    all_practice_emails = soup.select("div.practice div.item-contact a.item-contact-email")
-    temp_practice_emails = []
-    for practice in all_practice_emails:
-        temp_practice_emails.append((practice.get_text(strip=True)))
     practice_emails = []
-    for temp_practice_email in temp_practice_emails:
-        practice_emails.append(re.sub(r"envelope", "", temp_practice_email))
 
-    df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_tels, practice_emails)),
-                      columns=["Name", "Address", "Tel", "Email"])
-    print(df)
+    for practice in practices:
+
+        practice_names.append(practice.h2.text.strip())
+        practice_addresses.append(practice.div.text.strip())
+        contacts = practice.find("div", class_="item-contact")
+        try:
+            temp_phone = contacts.span.text.strip()
+        except Exception as e:
+            temp_phone = ""
+        stripped_temp_phone = re.sub("\n\n\n ", "", temp_phone)
+        practice_tels.append(re.sub("phone2", "", stripped_temp_phone))
+        try:
+            temp_email = contacts.a.text.strip()
+        except Exception as e:
+            temp_email = ""
+        stripped_temp_email = re.sub("\n\n\n ", "", temp_email)
+        practice_emails.append(re.sub("envelope", "", stripped_temp_email))
+
+    practice_details = zip(practice_names, practice_addresses, practice_tels, practice_emails)
+    print(list(practice_details))
+
+    # all_practice_addresses = soup.select("div.practice div.item-address")
+    # practice_addresses = []
+    # for practice in all_practice_addresses:
+    #     practice_addresses.append((practice.get_text(strip=True)))
+    #
+    # all_practice_tels = soup.select("div.practice div.item-contact span.item-contact-tel")
+    # temp_practice_tels = []
+    # for practice in all_practice_tels:
+    #     temp_practice_tels.append((practice.get_text(strip=True)))
+    # practice_tels = []
+    # for temp_practice_tel in temp_practice_tels:
+    #     practice_tels.append(re.sub(r"phone2", "", temp_practice_tel))
+    #
+    # all_practice_emails = soup.select("div.practice div.item-contact a.item-contact-email")
+    # temp_practice_emails = []
+    # for practice in all_practice_emails:
+    #     temp_practice_emails.append((practice.get_text(strip=True)))
+    # practice_emails = []
+    # for temp_practice_email in temp_practice_emails:
+    #     practice_emails.append(re.sub(r"envelope", "", temp_practice_email))
+    #
+    # df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_tels, practice_emails)),
+    #                   columns=["Name", "Address", "Tel", "Email"])
+    # print(df)
