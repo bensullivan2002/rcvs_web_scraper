@@ -17,7 +17,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 3)
+these_pages = range(1, 544)
 
 practice_names = []
 practice_addresses = []
