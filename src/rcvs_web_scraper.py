@@ -19,16 +19,16 @@ def make_soup(html):
 
 these_pages = range(1, 3)
 
+practice_names = []
+practice_addresses = []
+practice_tels = []
+practice_emails = []
+
 for this_page in these_pages:
     html_data = get_url(base_url, this_page)
     soup = make_soup(html_data)
 
     practices = soup.select("div.practice")
-
-    practice_names = []
-    practice_addresses = []
-    practice_tels = []
-    practice_emails = []
 
     for practice in practices:
 
@@ -48,6 +48,8 @@ for this_page in these_pages:
         stripped_temp_email = re.sub("\n\n\n ", "", temp_email)
         practice_emails.append(re.sub("envelope", "", stripped_temp_email))
 
-    df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_tels, practice_emails)),
-                      columns=["Name", "Address", "Tel", "Email"])
-    print(df)
+df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_tels, practice_emails)),
+                  columns=["Name", "Address", "Tel", "Email"])
+print(df)
+
+df.to_csv("out.csv", index=False)
