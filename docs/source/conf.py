@@ -11,6 +11,12 @@ copyright = '2024, Ben Sullivan'
 author = 'Ben Sullivan'
 release = '1.0'
 
+# -- Path setup --------------------------------------------------------------
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath("../../src"))
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -19,7 +25,7 @@ extensions = []
 templates_path = ['_templates']
 exclude_patterns = []
 
-language = 'python'
+language = 'English'
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
