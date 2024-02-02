@@ -4,4 +4,4 @@ main
 .. toctree::
    :maxdepth: 4
 
-   src.main.rcvs_web_scraper.py
+.. autofunction:: src.main.rcvs_web_scraper.py
