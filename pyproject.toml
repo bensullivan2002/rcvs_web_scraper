@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/bensullivan2002/rcvs_web_scraper"
 # Issues = "https://github.com/pypa/sampleproject/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/main"]
