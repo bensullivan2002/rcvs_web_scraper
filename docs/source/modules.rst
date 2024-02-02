@@ -4,5 +4,5 @@ modules
 .. toctree::
    :maxdepth: 4
 
-.. automodule:: src.main.rcvs_web_scraper
+.. autofunction:: src.main.rcvs_web_scraper.get_url
     :members:
