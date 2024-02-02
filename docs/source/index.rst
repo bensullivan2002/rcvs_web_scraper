@@ -10,6 +10,11 @@ Welcome to RCVS Web Scraper's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+Contents
+========
+
+.. toctree::
+
    modules
 
 Indices and tables
