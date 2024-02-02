@@ -1,3 +1,22 @@
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[project]
+name = "rcvs_web_scraper"
+version = "0.1"
+authors = [
+  { name="Ben Sullivan", email="bensullivan2002@gmail.com" },
+]
+description = "My first web scraper."
+# readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/bensullivan2002/rcvs_web_scraper"
+# Issues = "https://github.com/pypa/sampleproject/issues"
