@@ -28,13 +28,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install coverage
-      working-directory: PYTHON/py
+      working-directory: /Users/bensullivan/Library/CloudStorage/GoogleDrive-bensullivan2002@gmail.com/My Drive/Documents/python/projects/rcvs_web_scraper
   
     - name: Run tests with coverage
       run: |
         coverage run -m unittest
         coverage xml -o .qodana/code-coverage/coverage.xml
-      working-directory: PYTHON/py
+      working-directory: /Users/bensullivan/Library/CloudStorage/GoogleDrive-bensullivan2002@gmail.com/My Drive/Documents/python/projects/rcvs_web_scraper
 
     - name: Archive coverage data
       uses: actions/upload-artifact@v2
