@@ -19,6 +19,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
+
 these_pages = range(1, 2)
 
 practice_names = []
