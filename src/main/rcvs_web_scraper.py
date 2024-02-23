@@ -70,6 +70,5 @@ for practice_address in practice_addresses:
 
 df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_postcodes, practice_tels, practice_emails)),
                   columns=["Name", "Address", "Postcode", "Tel", "Email"])
-# print(df)
 
 df.to_csv("out.csv", index=False)
