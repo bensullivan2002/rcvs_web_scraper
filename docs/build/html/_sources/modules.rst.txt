@@ -1,7 +1,6 @@
-main
-====
+modules
+=======
 
-.. toctree::
-   :maxdepth: 4
+The RCVS Web Scraper package provides the following functions:
 
-   rcvs_web_scraper
+.. autofunction:: src.main.rcvs_web_scraper.get_url(url, page)
