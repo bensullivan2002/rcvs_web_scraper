@@ -19,7 +19,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 544)
+these_pages = range(1, 2)
 
 practice_names = []
 practice_addresses = []
@@ -55,7 +55,8 @@ for this_page in these_pages:
         practice_emails.append(re.sub("envelope", "", stripped_temp_email))
 
 for practice_address in practice_addresses:
-    results = re.findall("^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$", practice_address)
+    results = re.findall("""^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,
+    2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$""", practice_address)
     count = 0
     if len(results) == 0:
         postcode = ""
