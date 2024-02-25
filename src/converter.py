@@ -1,2 +1,2 @@
 def dataframe_to_json(dataframe):
-    return dataframe.to_json("rcvs.json", orient="columns")
+    return dataframe.to_json("rcvs.json", orient="records")
