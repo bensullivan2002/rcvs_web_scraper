@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import re
 import pandas as pd
 from src import converter
+from src import mongodb_connection
 
 base_url = """
 https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=&filter-keyword=+&filter-searchtype=practice&p="""
@@ -20,7 +21,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 544)
+these_pages = range(1, 2)
 
 practice_names = []
 practice_addresses = []
@@ -75,3 +76,5 @@ df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_postcode
 # df.to_csv("out.csv", index=False)
 
 json_output = converter.dataframe_to_json(df)
+
+# mongodb_connection.push_to_mongodb(json_output)
