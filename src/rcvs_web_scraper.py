@@ -20,7 +20,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 2)
+these_pages = range(1, 544)
 
 practice_names = []
 practice_addresses = []
