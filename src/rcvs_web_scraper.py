@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import re
 import pandas as pd
 from src import converter
-from src import mongodb_connection
+# from src import mongodb_connection
 
 base_url = """
 https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=&filter-keyword=+&filter-searchtype=practice&p="""
@@ -21,7 +21,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 2)
+these_pages = range(1, 544)
 
 practice_names = []
 practice_addresses = []
