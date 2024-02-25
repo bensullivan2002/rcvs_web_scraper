@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
+from json import loads, dumps
 
 base_url = """
 https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=&filter-keyword=+&filter-searchtype=practice&p="""
@@ -19,7 +20,7 @@ def make_soup(html):
     return BeautifulSoup(html.content, "lxml")
 
 
-these_pages = range(1, 544)
+these_pages = range(1, 2)
 
 practice_names = []
 practice_addresses = []
@@ -71,4 +72,9 @@ for practice_address in practice_addresses:
 df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_postcodes, practice_tels, practice_emails)),
                   columns=["Name", "Address", "Postcode", "Tel", "Email"])
 
-df.to_csv("out.csv", index=False)
+# df.to_csv("out.csv", index=False)
+
+json_output = df.to_json("rcvs_scrape.json", orient="records")
+parsed = loads(json_output)
+dumps(parsed, indent=4)
+print(parsed)
