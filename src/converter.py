@@ -1,4 +1,4 @@
-from json import loads, dumps
+from json import loads
 
 
 def dataframe_to_json(dataframe):
