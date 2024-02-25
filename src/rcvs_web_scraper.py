@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
-from json import loads, dumps
+from src import converter
 
 base_url = """
 https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=&filter-keyword=+&filter-searchtype=practice&p="""
@@ -74,7 +74,4 @@ df = pd.DataFrame(list(zip(practice_names, practice_addresses, practice_postcode
 
 # df.to_csv("out.csv", index=False)
 
-json_output = df.to_json("rcvs_scrape.json", orient="records")
-parsed = loads(json_output)
-dumps(parsed, indent=4)
-print(parsed)
+json_output = converter.dataframe_to_json(df)
